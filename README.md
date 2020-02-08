@@ -89,3 +89,18 @@ on the test needs.
 > cd SwagLabs
 > mvn clean test
 ```
+
+Tools I used for this example:
+- Git command line
+- GitHub
+- Maven command line
+- IntelliJ
+
+I used a few 3rd party dependencies in order to not re-write already written tools and
+make the tests/framework simpler to read and understand:
+- TestNG for test execution
+- Apache Commons IO for reading file help
+- Jackson Databind for binding JSON to Java POJO
+- Selenium 3 WebDriver for Java for browser automation
+- AssertJ for better assertions
+- Surefire Maven plugin for running unit tests
