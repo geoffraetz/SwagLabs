@@ -8,36 +8,41 @@ and validating the cart as the expected item.
 - Add Fleece Jacket to shopping cart
 - Validate cart contains fleece jacket
 
+See next section for tests and data approach.
+
 # Objective 2: Defining Test Data
 In the problem above, how would you define test data against which you could run your
 scenarios? What about other users or selecting a different item? What’s your approach?
 
-In this case, the scenario definition above does not have enough data.  The scenario requires
-at a very minimum the following data which can be found in the application:
+The scenario in Objective 1requires at a very minimum the following data which can be
+ ound in the application:
 
 - Exact username
 - Exact password
 - Exact product name(s)
 
 If we need to test multiple users and products, those are just data variations.  The approach
-for dealing with the variations is to make an object that has those properties.  The data
+for dealing with the variations is to make an object (POJO) that has those properties.  The data
 source could be JSON, XML, DB, etc.  The data would be read in based in the test being run
 and it would execute using the object's properties.  This avoids having any test data hard
-coded and allows easy maintenance of the data. Using that data object you can test scenarios
+coded and allows easy maintenance of the data. Using that data object you can create tests
+for the following things
 
-## Login:
+## Login positive and negative tests:
 - User login and locked out error
 - User login and has a performance issue with the login service
+    - Test is positive scenario, but dealt with in the framework
+    - Could track time and fail the test with a threshold here as well
 - User login happens correctly
-- User login with unknown and unknown error
+- User login with unknown user with error
 
-## Test:
-- Add invalid item
+## Product negative Test:
+- Add invalid product
 
 ## Workflows:
-- Add 1 valid item
-- Add 0 items
-- Add 1+ valid items
+- Add 1 valid product
+- Add 0 products
+- Add 1+ valid products
 
 It's possible to test other scenarios by adding more to the JSON and Java POJO.  Allows
 testing without having to change the data interface very much.
@@ -58,7 +63,7 @@ access:
 7. Working knowledge of selenium or other web driver
 8. Passion for creating simple, effective and working solutions
 
-The test steps for the workflow
+The test steps for the workflow tests
 1. Login using a user
 2. Verify you are on the Products page
 3. Verify items wanting to be added to the cart exist in the Products page
@@ -67,6 +72,8 @@ The test steps for the workflow
 6. Verify you are on the shopping cart page
 7. Verify badge count is correct
 8. Verify item is in cart
+
+Other tests directly test various scenarios without going into the full workflow.
 
 For a simple workflow the steps are the same.  To handle multiple products, you just
 need to iterate over the products in the data and assertions.  The data values are the
